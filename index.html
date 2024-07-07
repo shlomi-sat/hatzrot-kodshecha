@@ -23,18 +23,28 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+        header {
+            padding: 0;
+            border: none;
+            box-shadow: none;
+        }
         nav a {
             margin: 0 5px;
             text-decoration: none;
             color: #004080;
             font-size: 1em;
         }
+        .logo-container {
+            width: 100%;
+            overflow: hidden;
+        }
         .logo {
             width: 100%;
-            max-width: 300px;
             height: auto;
             display: block;
-            margin: 0 auto;
+        }
+        .header-content {
+            padding: 20px;
         }
         .header-decoration, .footer-decoration {
             text-align: center;
@@ -113,11 +123,15 @@
 </head>
 <body>
     <header>
-        <img src="logo.png" alt="לוגו בית הכנסת" class="logo">
-        <div class="header-decoration">✡</div>
-        <h1>ברוכים הבאים לבית הכנסת "בחצרות קודשך"</h1>
-        <p>ברוכים הבאים לאתר של בית הכנסת "בחצרות קודשך". כאן תוכלו למצוא מידע על זמני התפילות, אירועים קרובים, אפשרויות לתרומה ועוד. אנו שמחים לקבל אתכם לקהילתנו החמה והמזמינה.</p>
-        <div class="header-decoration">✡</div>
+        <div class="logo-container">
+            <img src="logo.png" alt="לוגו בית הכנסת" class="logo">
+        </div>
+        <div class="header-content">
+            <div class="header-decoration">✡</div>
+            <h1>ברוכים הבאים לבית הכנסת "בחצרות קודשך"</h1>
+            <p>ברוכים הבאים לאתר של בית הכנסת "בחצרות קודשך". כאן תוכלו למצוא מידע על זמני התפילות, אירועים קרובים, אפשרויות לתרומה ועוד. אנו שמחים לקבל אתכם לקהילתנו החמה והמזמינה.</p>
+            <div class="header-decoration">✡</div>
+        </div>
     </header>
 
     <nav>
@@ -211,18 +225,17 @@
             logo.src = 'logo.png';
             logo.onload = () => {
                 const pageWidth = doc.internal.pageSize.getWidth();
-                const logoWidth = 100;
+                const logoWidth = pageWidth;
                 const logoHeight = (logoWidth / logo.naturalWidth) * logo.naturalHeight;
-                const centerX = (pageWidth - logoWidth) / 2;
 
-                doc.addImage(logo, 'PNG', centerX, 10, logoWidth, logoHeight);
+                doc.addImage(logo, 'PNG', 0, 0, logoWidth, logoHeight);
                 doc.setFont('courier');
                 doc.setFontSize(16);
-                doc.text('לוח זמני תפילות', pageWidth / 2, 70, { align: 'center' });
+                doc.text('לוח זמני תפילות', pageWidth / 2, logoHeight + 10, { align: 'center' });
                 doc.setFontSize(12);
-                doc.text('שחרית: 06:30', pageWidth / 2, 80, { align: 'center' });
-                doc.text('מנחה: 13:15', pageWidth / 2, 90, { align: 'center' });
-                doc.text('ערבית: 19:45', pageWidth / 2, 100, { align: 'center' });
+                doc.text('שחרית: 06:30', pageWidth / 2, logoHeight + 20, { align: 'center' });
+                doc.text('מנחה: 13:15', pageWidth / 2, logoHeight + 30, { align: 'center' });
+                doc.text('ערבית: 19:45', pageWidth / 2, logoHeight + 40, { align: 'center' });
 
                 // הורדת ה-PDF
                 doc.save('schedule.pdf');
