@@ -14,20 +14,21 @@
             line-height: 1.6;
         }
         header, nav, section, footer {
-            margin: 20px;
-            padding: 20px;
+            margin: 10px;
+            padding: 10px;
             border: 1px solid #ccc;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         nav a {
-            margin: 0 10px;
+            margin: 0 5px;
             text-decoration: none;
             color: #004080;
+            font-size: 0.9em;
         }
         .logo {
-            width: 100%;
+            width: 80%;
             height: auto;
             display: block;
             margin: 0 auto;
@@ -35,7 +36,7 @@
         .header-decoration, .footer-decoration {
             text-align: center;
             color: #8b5e3c;
-            font-size: 2em;
+            font-size: 1.5em;
         }
         .contact-form {
             display: flex;
@@ -51,6 +52,7 @@
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            font-size: 0.9em;
         }
         .contact-form textarea {
             height: 150px;
@@ -62,6 +64,7 @@
             border: none;
             padding: 10px 20px;
             border-radius: 4px;
+            font-size: 0.9em;
         }
         .contact-form input[type="submit"]:hover {
             background-color: #003060;
@@ -73,10 +76,27 @@
         }
         .mySlides {
             display: none;
+            text-align: center;
         }
         .mySlides img {
             width: 100%;
+            max-height: 300px;
+            object-fit: cover;
             border-radius: 8px;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            nav a {
+                font-size: 0.8em;
+            }
+            .contact-form input, .contact-form textarea {
+                font-size: 0.8em;
+            }
+            .contact-form input[type="submit"] {
+                font-size: 0.8em;
+            }
         }
     </style>
 </head>
@@ -97,8 +117,8 @@
         <a href="#gabbais">גבאים</a>
         <a href="#gallery">גלריה</a>
         <a href="#contact">צור קשר</a>
-        <a href="#terms">תנאי שימוש</a>
-        <a href="#privacy">מדיניות פרטיות</a>
+        <a href="privacy.html">מדיניות פרטיות</a>
+        <a href="terms.html">תנאי שימוש</a>
     </nav>
 
     <section id="about">
@@ -133,24 +153,16 @@
     <section id="gabbais">
         <h2>צוות הגבאים</h2>
         <ul>
-            <li><strong>ר' שלומי חוברה</strong> - טלפון: 050-1234567</li>
-            <li><strong>ר' ינון מהלל</strong> - טלפון: 050-2345678</li>
-            <li><strong>ר' נוריאל רחמים</strong> - טלפון: 050-3456789</li>
+            <li><strong>שלומי חוברה</strong> - טלפון: <a href="tel:0542876499">054-2876499</a></li>
+            <li><strong>ינון מהלל</strong> - טלפון: <a href="tel:0549463646">054-9463646</a></li>
+            <li><strong>נוריאל רחמים</strong> - טלפון: <a href="tel:0526879872">052-6879872</a></li>
         </ul>
     </section>
 
     <section id="gallery" class="gallery">
         <h2>גלריית תמונות</h2>
-        <div class="slideshow-container">
-            <div class="mySlides">
-                <img src="Pictures/תמונה 1.jpg" alt="תמונה 1">
-            </div>
-            <div class="mySlides">
-                <img src="Pictures/תמונה 2.jpg" alt="תמונה 2">
-            </div>
-            <div class="mySlides">
-                <img src="Pictures/תמונה 3.jpg" alt="תמונה 3">
-            </div>
+        <div class="slideshow-container" id="slideshow-container">
+            <!-- התמונות יוכנסו כאן -->
         </div>
     </section>
 
@@ -171,47 +183,51 @@
 
         <section id="footer-info">
             <h2>פרטי יצירת קשר</h2>
-            <p>כתובת: רחוב הדוגמא 1, ירושלים</p>
+            <p>כתובת: רחוב רמח"ל 18, פתח תקווה</p>
             <p>טלפון: 02-1234567</p>
             <p>דוא"ל: info@betknest.org.il</p>
         </section>
-
-        <section id="terms">
-            <h2>תנאי שימוש</h2>
-            <p>ברוכים הבאים לאתר של בית הכנסת "בחצרות קודשך". השימוש באתר זה מותנה בקבלת תנאי השימוש המפורטים להלן. שימוש באתר זה מהווה הסכמה לתנאי השימוש הללו.
-                <ul>
-                    <li>האתר מספק מידע כללי בלבד על בית הכנסת והקהילה. אין לראות במידע באתר כתחליף לייעוץ מקצועי.</li>
-                    <li>אין להשתמש בתכני האתר ללא רשות מפורשת מבית הכנסת.</li>
-                    <li>בית הכנסת שומר לעצמו את הזכות לשנות את תנאי השימוש מעת לעת, ושינויים אלה יכנסו לתוקף מרגע פרסומם באתר.</li>
-                </ul>
-            </p>
-        </section>
-
-        <section id="privacy">
-            <h2>מדיניות פרטיות</h2>
-            <p>בית הכנסת "בחצרות קודשך" מכבד את פרטיות המשתמשים באתר ושומר על הסודיות של כל המידע האישי הנמסר על ידיהם.
-                <ul>
-                    <li>המידע הנאסף באתר משמש למטרות הקשורות לפעילות בית הכנסת בלבד.</li>
-                    <li>בית הכנסת נוקט באמצעי אבטחה מחמירים לשמירת המידע האישי.</li>
-                    <li>לא נעביר את המידע האישי לצדדים שלישיים ללא הסכמת המשתמש, למעט מקרים בהם נדרש על פי חוק.</li>
-                </ul>
-            </p>
-        </section>
         <div class="footer-decoration">✡</div>
     </footer>
+
     <script>
+        // פונקציה לטעינת כל התמונות מתיקיית "Pictures" והצגתן באקראי
+        const slideshowContainer = document.getElementById('slideshow-container');
+
+        fetch('Pictures/')
+            .then(response => response.text())
+            .then(data => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data, 'text/html');
+                const images = Array.from(doc.querySelectorAll('a'))
+                    .filter(link => /\.(jpg|jpeg|png|gif)$/i.test(link.href))
+                    .map(link => link.href);
+
+                images.sort(() => Math.random() - 0.5); // ערבוב התמונות
+
+                images.forEach(image => {
+                    const slideDiv = document.createElement('div');
+                    slideDiv.classList.add('mySlides');
+                    const imgElement = document.createElement('img');
+                    imgElement.src = image;
+                    slideDiv.appendChild(imgElement);
+                    slideshowContainer.appendChild(slideDiv);
+                });
+
+                showSlides();
+            });
+
         let slideIndex = 0;
-        showSlides();
 
         function showSlides() {
-            let slides = document.getElementsByClassName("mySlides");
+            const slides = document.getElementsByClassName("mySlides");
             for (let i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";
             }
             slideIndex++;
             if (slideIndex > slides.length) {slideIndex = 1}
             slides[slideIndex-1].style.display = "block";
-            setTimeout(showSlides, 5000); // Change image every 5 seconds
+            setTimeout(showSlides, 5000); // שינוי תמונה כל 5 שניות
         }
     </script>
 </body>
