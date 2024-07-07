@@ -215,7 +215,7 @@
                 const centerX = (pageWidth - logoWidth) / 2;
 
                 doc.addImage(logo, 'PNG', centerX, 10, logoWidth, logoHeight);
-                doc.setFont('Alef-Regular', 'normal');
+                doc.setFont('courier');
                 doc.setFontSize(16);
                 doc.text('לוח זמני תפילות', pageWidth / 2, 70, { align: 'center' });
                 doc.setFontSize(12);
@@ -228,59 +228,43 @@
             };
         }
 
-        // הוספת תמיכה בגופנים בעברית
-        const loadHebrewFont = async () => {
-            const response = await fetch('https://raw.githubusercontent.com/google/fonts/main/ofl/alef/Alef-Regular.ttf');
-            const font = await response.arrayBuffer();
-            const base64Font = btoa(String.fromCharCode(...new Uint8Array(font)));
+        const images = [
+            'Pictures/תמונה 1.jpg',
+            'Pictures/תמונה 2.jpg',
+            'Pictures/תמונה 3.jpg'
+            // ניתן להוסיף כאן שמות נוספים של תמונות מתיקיית "Pictures"
+        ];
 
-            jsPDF.API.events.push(['addFonts', (doc) => {
-                doc.addFileToVFS('Alef-Regular.ttf', base64Font);
-                doc.addFont('Alef-Regular.ttf', 'Alef-Regular', 'normal');
-            }]);
-        };
-
-        // קריאה לפונקציה לטעינת הגופן העברי
-        loadHebrewFont();
-
-        // פונקציה לטעינת כל התמונות מתיקיית "Pictures" והצגתן באקראי
         const slideshowContainer = document.getElementById('slideshow-container');
 
-        fetch('Pictures/')
-            .then(response => response.text())
-            .then(data => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(data, 'text/html');
-                const images = Array.from(doc.querySelectorAll('a'))
-                    .filter(link => /\.(jpg|jpeg|png|gif)$/i.test(link.href))
-                    .map(link => link.href);
-
-                images.sort(() => Math.random() - 0.5); // ערבוב התמונות
-
-                images.forEach(image => {
-                    const slideDiv = document.createElement('div');
-                    slideDiv.classList.add('mySlides');
-                    const imgElement = document.createElement('img');
-                    imgElement.src = image;
-                    slideDiv.appendChild(imgElement);
-                    slideshowContainer.appendChild(slideDiv);
-                });
-
-                showSlides();
-            });
+        images.forEach((image, index) => {
+            const slideDiv = document.createElement('div');
+            slideDiv.classList.add('mySlides');
+            if (index === 0) {
+                slideDiv.style.display = 'block';
+            }
+            const imgElement = document.createElement('img');
+            imgElement.src = image;
+            slideDiv.appendChild(imgElement);
+            slideshowContainer.appendChild(slideDiv);
+        });
 
         let slideIndex = 0;
 
         function showSlides() {
-            const slides = document.getElementsByClassName("mySlides");
+            const slides = document.getElementsByClassName('mySlides');
             for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
+                slides[i].style.display = 'none';
             }
             slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}
-            slides[slideIndex-1].style.display = "block";
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+            slides[slideIndex - 1].style.display = 'block';
             setTimeout(showSlides, 5000); // שינוי תמונה כל 5 שניות
         }
+
+        showSlides();
     </script>
 </body>
 </html>
