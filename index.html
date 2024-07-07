@@ -11,7 +11,7 @@
             direction: rtl;
             background-color: #f0f0f0;
             color: #333;
-            line-height: 1.8;
+            line-height: 1.6;
         }
         header, nav, section, footer {
             margin: 20px;
@@ -32,13 +32,6 @@
             display: block;
             margin: 0 auto;
         }
-        .gallery img {
-            width: 200px;
-            height: auto;
-            margin: 10px;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-        }
         .header-decoration, .footer-decoration {
             text-align: center;
             color: #8b5e3c;
@@ -55,18 +48,35 @@
         }
         .contact-form input, .contact-form textarea {
             padding: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
+        }
+        .contact-form textarea {
+            height: 150px;
         }
         .contact-form input[type="submit"] {
             background-color: #004080;
             color: #fff;
             cursor: pointer;
             border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
         }
         .contact-form input[type="submit"]:hover {
             background-color: #003060;
+        }
+        .slideshow-container {
+            max-width: 100%;
+            position: relative;
+            margin: auto;
+        }
+        .mySlides {
+            display: none;
+        }
+        .mySlides img {
+            width: 100%;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -123,18 +133,24 @@
     <section id="gabbais">
         <h2>צוות הגבאים</h2>
         <ul>
-            <li><strong>ר' שלומי חוברה</strong> - גבאי ראשי - טלפון: 050-1234567</li>
-            <li><strong>ר' ינון מהלל</strong> - גבאי שני - טלפון: 050-2345678</li>
-            <li><strong>ר' נוריאל רחמים</strong> - גבאי שלישי - טלפון: 050-3456789</li>
+            <li><strong>ר' שלומי חוברה</strong> - טלפון: 050-1234567</li>
+            <li><strong>ר' ינון מהלל</strong> - טלפון: 050-2345678</li>
+            <li><strong>ר' נוריאל רחמים</strong> - טלפון: 050-3456789</li>
         </ul>
     </section>
 
     <section id="gallery" class="gallery">
         <h2>גלריית תמונות</h2>
-        <div>
-            <img src="path_to_image1.jpg" alt="תמונה מאירוע 1">
-            <img src="path_to_image2.jpg" alt="תמונה מאירוע 2">
-            <img src="path_to_image3.jpg" alt="תמונה מאירוע 3">
+        <div class="slideshow-container">
+            <div class="mySlides">
+                <img src="Pictures/תמונה 1.jpg" alt="תמונה 1">
+            </div>
+            <div class="mySlides">
+                <img src="Pictures/תמונה 2.jpg" alt="תמונה 2">
+            </div>
+            <div class="mySlides">
+                <img src="Pictures/תמונה 3.jpg" alt="תמונה 3">
+            </div>
         </div>
     </section>
 
@@ -144,11 +160,11 @@
             <h2>צור קשר</h2>
             <form class="contact-form" action="path_to_contact_form" method="post">
                 <label for="name">שם:</label>
-                <input type="text" id="name" name="name" required><br>
+                <input type="text" id="name" name="name" required>
                 <label for="email">דוא"ל:</label>
-                <input type="email" id="email" name="email" required><br>
+                <input type="email" id="email" name="email" required>
                 <label for="message">הודעה:</label>
-                <textarea id="message" name="message" required></textarea><br>
+                <textarea id="message" name="message" required></textarea>
                 <input type="submit" value="שלח">
             </form>
         </section>
@@ -183,5 +199,20 @@
         </section>
         <div class="footer-decoration">✡</div>
     </footer>
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("mySlides");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex-1].style.display = "block";
+            setTimeout(showSlides, 5000); // Change image every 5 seconds
+        }
+    </script>
 </body>
 </html>
