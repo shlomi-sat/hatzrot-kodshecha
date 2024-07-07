@@ -208,11 +208,19 @@
             const logo = new Image();
             logo.src = 'logo.png';
             logo.onload = () => {
-                doc.addImage(logo, 'PNG', 10, 10, 50, 50);
-                doc.text('לוח זמני תפילות', 20, 70);
-                doc.text('שחרית: 06:30', 20, 80);
-                doc.text('מנחה: 13:15', 20, 90);
-                doc.text('ערבית: 19:45', 20, 100);
+                const pageWidth = doc.internal.pageSize.getWidth();
+                const pageHeight = doc.internal.pageSize.getHeight();
+                const logoWidth = 50;
+                const logoHeight = 50;
+                const centerX = (pageWidth - logoWidth) / 2;
+
+                doc.addImage(logo, 'PNG', centerX, 10, logoWidth, logoHeight);
+                doc.setFontSize(16);
+                doc.text('לוח זמני תפילות', pageWidth / 2, 70, null, null, 'center');
+                doc.setFontSize(12);
+                doc.text('שחרית: 06:30', pageWidth / 2, 80, null, null, 'center');
+                doc.text('מנחה: 13:15', pageWidth / 2, 90, null, null, 'center');
+                doc.text('ערבית: 19:45', pageWidth / 2, 100, null, null, 'center');
 
                 // הורדת ה-PDF
                 doc.save('schedule.pdf');
